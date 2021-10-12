@@ -19,13 +19,24 @@ let svg = d3.select('#vis')
   .style('border', 'solid')
   .attr('viewBox', [0, 0, width + margin.left + margin.right, height + margin.top + margin.bottom].join(' '))
 
+
+
 // Add a square 
 let rect = svg.append('rect')
   .attr('x', '100')
   .attr('y', '200')
   .attr('width', '20%')
   .attr('height', '20%')
-  .attr('fill', '#a6cee3'); 
+  .attr('fill', '#a6cee3')
+  .on('mouseover', function() {
+      
+      d3.select(this).attr('stroke', 'black').attr('stroke-width', 3);
+    })
+    .on('mouseout', function() {
+      // Setting the stroke color to null removes it entirely.
+      d3.select(this).attr('stroke', null);
+    }); 
+
 
 // Add a circle 
 let circle = svg.append('circle') 
@@ -33,6 +44,19 @@ let circle = svg.append('circle')
   .attr('cy', '250')
   .attr('r', '60')
   .attr('fill', '#b2df8a')
+  .on('mouseover', function() {
+      // adds bold line on hover
+      
+      d3.select(this).attr('stroke', 'black').attr('stroke-width', 3);
+    })
+    .on('mouseout', function() {
+      // Removes bold line when mouse is removed
+      d3.select(this).attr('stroke', null);
+    })
+  .on("click", function(){
+      // alternates between 2 colors
+   var nextColor = this.style.fill == "pink" ? "#b2df8a" : "pink";
+   d3.select(this).style("fill", nextColor);});
 
 
 
