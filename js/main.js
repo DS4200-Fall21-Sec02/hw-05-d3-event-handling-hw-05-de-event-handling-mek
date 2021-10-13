@@ -30,12 +30,14 @@ let rect = svg.append('rect')
   
   .attr('height', '20%')
   .attr('fill', '#a6cee3')
+
+// adds border on hover
   .on('mouseover', function() {
       
       d3.select(this).attr('stroke', 'black').attr('stroke-width', 3);
     })
+// removes border after hover
     .on('mouseout', function() {
-      // Setting the stroke color to null removes it entirely.
       d3.select(this).attr('stroke', null);
     })
     .on("click", function(){
@@ -84,13 +86,15 @@ let circle = svg.append('circle')
 
 
 
-
+//selects the shape and brings it to the front
 function dragStart(event,d){
         d3.select(this)         
         d3.select(this).raise().classed("active", true);  
       }
+
+//changes position of circle
       
-    function draggingCircle(event,d){
+function draggingCircle(event,d){
         var xCoor = event.x;
         var yCoor = event.y;
 
@@ -98,6 +102,8 @@ function dragStart(event,d){
           .attr("cx", xCoor)
           .attr("cy", yCoor);
       }
+
+//changes position of square 
 
 function draggingRect(event,d){
         var xCoor = event.x;
@@ -108,15 +114,12 @@ function draggingRect(event,d){
           .attr("y", yCoor);
       }
       
-      function dragEnd(event,d){
+//ends drag
+
+function dragEnd(event,d){
         d3.select(this)
       }
 
-d3.selection.prototype.moveToFront = function() {
-  return this.each(function(){
-    this.parentNode.appendChild(this);
-  });
-}
   
   ;
 
