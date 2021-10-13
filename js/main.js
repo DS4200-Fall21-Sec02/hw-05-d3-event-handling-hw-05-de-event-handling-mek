@@ -27,11 +27,7 @@ let rect = svg.append('rect')
   .attr('x', '100')
   .attr('y', '200')
   .attr('width', '20%')
-  .call(d3.drag()
-        .on('start', dragStart)
-        .on('drag', draggingRect)
-        .on('end', dragEnd)
-      )
+  
   .attr('height', '20%')
   .attr('fill', '#a6cee3')
   .on('mouseover', function() {
@@ -48,6 +44,11 @@ let rect = svg.append('rect')
       circleColor = circleColor == "#b2df8a" ? "pink" : "#b2df8a";
       d3.select('circle').style("fill", nextColor);
      })
+    .call(d3.drag()
+        .on('start', dragStart)
+        .on('drag', draggingRect)
+        .on('end', dragEnd)
+      )
 ;
 
 
@@ -56,12 +57,7 @@ let circle = svg.append('circle')
   .attr('cx', '350')
   .attr('cy', '250')
   .attr('r', '60')
-   .call(d3.drag()
-        .on('start', dragStart)
-        .on('drag', draggingCircle)
-        .on('end', dragEnd)
-      )
-  .attr('fill', '#b2df8a')
+     .attr('fill', '#b2df8a')
   .on('mouseover', function() {
       // adds bold line on hover
       
@@ -80,11 +76,18 @@ let circle = svg.append('circle')
       d3.select('rect').style("fill", randomColor);
      })
 
+    .call(d3.drag()
+        .on('start', dragStart)
+        .on('drag', draggingCircle)
+        .on('end', dragEnd)
+      )
+
+
 
 
 function dragStart(event,d){
         d3.select(this)         
-        d3.select(this).moveToFront()  
+        d3.select(this).raise().classed("active", true);  
       }
       
     function draggingCircle(event,d){
