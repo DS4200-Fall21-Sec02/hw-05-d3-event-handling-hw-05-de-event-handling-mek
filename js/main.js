@@ -22,6 +22,7 @@ let svg = d3.select('#vis')
 
 
 // Add a square 
+var circleColor = "#b2df8a"
 let rect = svg.append('rect')
   .attr('x', '100')
   .attr('y', '200')
@@ -35,7 +36,14 @@ let rect = svg.append('rect')
     .on('mouseout', function() {
       // Setting the stroke color to null removes it entirely.
       d3.select(this).attr('stroke', null);
-    }); 
+    })
+    .on("click", function(){
+      // alternates between 2 colors
+      var nextColor = circleColor == "#b2df8a" ? "pink" : "#b2df8a";
+      circleColor = circleColor == "#b2df8a" ? "pink" : "#b2df8a";
+      d3.select('circle').style("fill", nextColor);
+     })
+;
 
 
 // Add a circle 
@@ -53,10 +61,16 @@ let circle = svg.append('circle')
       // Removes bold line when mouse is removed
       d3.select(this).attr('stroke', null);
     })
-  .on("click", function(){
+     .on("dblclick", function(){
       // alternates between 2 colors
-   var nextColor = this.style.fill == "pink" ? "#b2df8a" : "pink";
-   d3.select(this).style("fill", nextColor);});
+      var nextColor = circleColor == "#b2df8a" ? "pink" : "#b2df8a";
+      circleColor = circleColor == "#b2df8a" ? "pink" : "#b2df8a";
+      var randomColor = "#" + Math.floor(Math.random()*16777215).toString(16);
+      d3.select(this).style("fill", nextColor);
+      d3.select('rect').style("fill", randomColor);
+     });
+
+
 
 
 
