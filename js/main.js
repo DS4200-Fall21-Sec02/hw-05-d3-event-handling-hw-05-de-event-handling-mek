@@ -118,10 +118,7 @@ function draggingRect(event,d){
 
 function dragEnd(event,d){
         d3.select(this)
-      }
-
-  
-  ;
+      };
 
 
 
