@@ -27,6 +27,11 @@ let rect = svg.append('rect')
   .attr('x', '100')
   .attr('y', '200')
   .attr('width', '20%')
+  .call(d3.drag()
+        .on('start', dragStart)
+        .on('drag', draggingRect)
+        .on('end', dragEnd)
+      )
   .attr('height', '20%')
   .attr('fill', '#a6cee3')
   .on('mouseover', function() {
@@ -51,6 +56,11 @@ let circle = svg.append('circle')
   .attr('cx', '350')
   .attr('cy', '250')
   .attr('r', '60')
+   .call(d3.drag()
+        .on('start', dragStart)
+        .on('drag', draggingCircle)
+        .on('end', dragEnd)
+      )
   .attr('fill', '#b2df8a')
   .on('mouseover', function() {
       // adds bold line on hover
@@ -68,7 +78,45 @@ let circle = svg.append('circle')
       var randomColor = "#" + Math.floor(Math.random()*16777215).toString(16);
       d3.select(this).style("fill", nextColor);
       d3.select('rect').style("fill", randomColor);
-     });
+     })
+
+
+
+function dragStart(event,d){
+        d3.select(this)         
+        d3.select(this).moveToFront()  
+      }
+      
+    function draggingCircle(event,d){
+        var xCoor = event.x;
+        var yCoor = event.y;
+
+        d3.select(this)
+          .attr("cx", xCoor)
+          .attr("cy", yCoor);
+      }
+
+function draggingRect(event,d){
+        var xCoor = event.x;
+        var yCoor = event.y;
+
+        d3.select(this)
+          .attr("x", xCoor)
+          .attr("y", yCoor);
+      }
+      
+      function dragEnd(event,d){
+        d3.select(this)
+          .style("stroke", "black")
+      }
+
+d3.selection.prototype.moveToFront = function() {
+  return this.each(function(){
+    this.parentNode.appendChild(this);
+  });
+}
+  
+  ;
 
 
 
