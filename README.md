@@ -2,8 +2,8 @@
 
 This repository is your starting point for hw-05. Assignment details and instructions are below. 
 
-Link to your GitHub pages website: `[https://ds4200-fall21-sec02.github.io/hw-05-d3-event-handling-hw-05-de-event-handling-mek/
-]`
+Link to your GitHub pages website: [https://ds4200-fall21-sec02.github.io/hw-05-d3-event-handling-hw-05-de-event-handling-mek/
+]
 
 # Aim of the assignment
 
